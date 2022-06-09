@@ -94,29 +94,32 @@ const mutationMethods = new GraphQLObjectType({
             }
         },
         addProject : {
-            type : clientType,
+            type : projectType,
             args : {
                 name : {type : GraphQLNonNull(GraphQLString)}, 
                 description : {type : GraphQLNonNull(GraphQLString)},
-                status : {type : new GraphQLEnumType({
-                    name : 'ProjectStatus',
-                    values: {
-                        'new': {value: "not started"},
-                        'progress' : {value : 'in progress'},
-                        'done' : {value: "Completed"}
-                    }, 
-                }),
-                defaultValue : 'not started'
+                status: {
+          type: new GraphQLEnumType({
+            name: 'ProjectStatus',
+            values: {
+              new: { value: 'Not Started' },
+              progress: { value: 'In Progress' },
+              completed: { value: 'Completed' },
             },
+          }),
+          defaultValue: 'Not Started',
+        },
+                clientId : { type : GraphQLNonNull(GraphQLID)}
             }, 
             resolve(parent, args){
-                const client = new Project({
+                const projectItem = new Project({
                     name : args.name,
-                    email : args.email,
-                    phone : args.phone 
-                });
+                    description : args.description,
+                    status : args.status,
+                    clientId : args.clientId 
+                })
 
-                return Project.save();
+                return projectItem.save();
             }
         },
     }
