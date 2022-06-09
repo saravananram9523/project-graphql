@@ -108,7 +108,7 @@ const mutationMethods = new GraphQLObjectType({
                     }, 
                 }),
                 defaultValue : 'not started'
-            },
+                },
             clientId : {type : GraphQLNonNull(GraphQLID)}
             }, 
             resolve(parent, args){
