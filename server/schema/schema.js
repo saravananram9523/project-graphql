@@ -99,16 +99,16 @@ const mutationMethods = new GraphQLObjectType({
                 name : {type : GraphQLNonNull(GraphQLString)}, 
                 description : {type : GraphQLNonNull(GraphQLString)},
                 status: {
-          type: new GraphQLEnumType({
-            name: 'ProjectStatus',
-            values: {
-              new: { value: 'Not Started' },
-              progress: { value: 'In Progress' },
-              completed: { value: 'Completed' },
-            },
-          }),
-          defaultValue: 'Not Started',
-        },
+                    type: new GraphQLEnumType({
+                        name: 'ProjectStatus',
+                        values: {
+                        'new': { value: 'Not Started' },
+                        'progress': { value: 'In Progress' },
+                        'completed': { value: 'Completed' },
+                        },
+                    }),
+                    defaultValue: 'Not Started',
+                },
                 clientId : { type : GraphQLNonNull(GraphQLID)}
             }, 
             resolve(parent, args){
